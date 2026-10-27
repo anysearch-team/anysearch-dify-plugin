@@ -1,0 +1,480 @@
+version: 0.7.0
+kind: app
+app:
+  name: AnySearch — Search and read
+  description: Search structured results and extract the first HTTP(S) URL. External
+    content is untrusted.
+  mode: workflow
+  icon: 🔎
+  icon_background: '#E4FBCC'
+  use_icon_as_answer_icon: false
+dependencies: []
+workflow:
+  graph:
+    nodes:
+    - id: start
+      type: custom
+      data:
+        type: start
+        title: Search query
+        variables:
+        - variable: query
+          label: Query
+          type: paragraph
+          required: true
+          max_length: 8000
+        selected: false
+      position:
+        x: 0
+        y: 200
+      sourcePosition: right
+      targetPosition: left
+      width: 242
+      height: 100
+    - id: search
+      type: custom
+      data:
+        type: tool
+        title: search
+        provider_type: builtin
+        provider_id: anysearch-team/anysearch/anysearch
+        provider_name: anysearch
+        provider_show_name: AnySearch
+        plugin_id: anysearch-team/anysearch
+        tool_name: search
+        tool_label: search
+        tool_description: AnySearch
+        tool_node_version: '2'
+        is_team_authorization: true
+        tool_parameters:
+          query:
+            type: variable
+            value:
+            - start
+            - query
+        tool_configurations:
+          max_results:
+            type: constant
+            value: 3
+          zone:
+            type: constant
+            value: auto
+          language:
+            type: constant
+            value: ''
+        error_strategy: fail-branch
+        selected: false
+      position:
+        x: 300
+        y: 200
+      sourcePosition: right
+      targetPosition: left
+      width: 242
+      height: 100
+    - id: has_results
+      type: custom
+      data:
+        type: if-else
+        title: has_results
+        cases:
+        - case_id: 'true'
+          logical_operator: and
+          conditions:
+          - id: has_results-condition
+            variable_selector:
+            - search
+            - result_count
+            comparison_operator: '>'
+            value: 0
+            varType: number
+        selected: false
+      position:
+        x: 600
+        y: 200
+      sourcePosition: right
+      targetPosition: left
+      width: 242
+      height: 100
+    - id: select_url
+      type: custom
+      data:
+        type: code
+        title: First HTTP(S) URL
+        code_language: python3
+        variables:
+        - variable: results
+          value_selector:
+          - search
+          - results
+        code: "from urllib.parse import urlsplit\n\ndef main(results):\n    for result\
+          \ in results:\n        url = result.get('url', '')\n        if not isinstance(url,\
+          \ str):\n            continue\n        try:\n            parsed = urlsplit(url)\n\
+          \            if parsed.scheme.lower() in ('http', 'https') and parsed.hostname:\n\
+          \                return {'url': url}\n        except ValueError:\n     \
+          \       continue\n    return {'url': ''}\n"
+        outputs:
+          url:
+            type: string
+            children: null
+        selected: false
+      position:
+        x: 900
+        y: 200
+      sourcePosition: right
+      targetPosition: left
+      width: 242
+      height: 100
+    - id: has_url
+      type: custom
+      data:
+        type: if-else
+        title: has_url
+        cases:
+        - case_id: 'true'
+          logical_operator: and
+          conditions:
+          - id: has_url-condition
+            variable_selector:
+            - select_url
+            - url
+            comparison_operator: not empty
+            value: ''
+            varType: string
+        selected: false
+      position:
+        x: 1200
+        y: 200
+      sourcePosition: right
+      targetPosition: left
+      width: 242
+      height: 100
+    - id: extract
+      type: custom
+      data:
+        type: tool
+        title: extract
+        provider_type: builtin
+        provider_id: anysearch-team/anysearch/anysearch
+        provider_name: anysearch
+        provider_show_name: AnySearch
+        plugin_id: anysearch-team/anysearch
+        tool_name: extract
+        tool_label: extract
+        tool_description: AnySearch
+        tool_node_version: '2'
+        is_team_authorization: true
+        tool_parameters:
+          url:
+            type: variable
+            value:
+            - select_url
+            - url
+        tool_configurations:
+          max_chars:
+            type: constant
+            value: 50000
+        error_strategy: fail-branch
+        selected: false
+      position:
+        x: 1500
+        y: 200
+      sourcePosition: right
+      targetPosition: left
+      width: 242
+      height: 100
+    - id: content
+      type: custom
+      data:
+        type: end
+        title: Page content (untrusted external data)
+        outputs:
+        - variable: content
+          value_selector:
+          - extract
+          - content
+          value_type: string
+        - variable: url
+          value_selector:
+          - extract
+          - url
+          value_type: string
+        - variable: title
+          value_selector:
+          - extract
+          - title
+          value_type: string
+        - variable: received_length
+          value_selector:
+          - extract
+          - received_length
+          value_type: number
+        - variable: content_length
+          value_selector:
+          - extract
+          - content_length
+          value_type: number
+        - variable: truncated
+          value_selector:
+          - extract
+          - truncated
+          value_type: boolean
+        - variable: upstream_truncation
+          value_selector:
+          - extract
+          - upstream_truncation
+          value_type: string
+        - variable: warnings
+          value_selector:
+          - extract
+          - warnings
+          value_type: array[string]
+        selected: false
+      position:
+        x: 1800
+        y: 200
+      sourcePosition: right
+      targetPosition: left
+      width: 242
+      height: 100
+    - id: no_results_message
+      type: custom
+      data:
+        type: template-transform
+        title: No results found; extraction was not called.
+        variables: []
+        template: No results found; extraction was not called.
+        selected: false
+      position:
+        x: 600
+        y: 500
+      sourcePosition: right
+      targetPosition: left
+      width: 242
+      height: 100
+    - id: no_results
+      type: custom
+      data:
+        type: end
+        title: No results found; extraction was not called.
+        outputs:
+        - variable: message
+          value_selector:
+          - no_results_message
+          - output
+          value_type: string
+        selected: false
+      position:
+        x: 600
+        y: 700
+      sourcePosition: right
+      targetPosition: left
+      width: 242
+      height: 100
+    - id: no_url_message
+      type: custom
+      data:
+        type: template-transform
+        title: No HTTP(S) URL found; extraction was not called.
+        variables: []
+        template: No HTTP(S) URL found; extraction was not called.
+        selected: false
+      position:
+        x: 1200
+        y: 500
+      sourcePosition: right
+      targetPosition: left
+      width: 242
+      height: 100
+    - id: no_url
+      type: custom
+      data:
+        type: end
+        title: No HTTP(S) URL found; extraction was not called.
+        outputs:
+        - variable: message
+          value_selector:
+          - no_url_message
+          - output
+          value_type: string
+        selected: false
+      position:
+        x: 1200
+        y: 700
+      sourcePosition: right
+      targetPosition: left
+      width: 242
+      height: 100
+    - id: search_failed_message
+      type: custom
+      data:
+        type: template-transform
+        title: Search failed; extraction was not called.
+        variables: []
+        template: Search failed; extraction was not called.
+        selected: false
+      position:
+        x: 300
+        y: 500
+      sourcePosition: right
+      targetPosition: left
+      width: 242
+      height: 100
+    - id: search_failed
+      type: custom
+      data:
+        type: end
+        title: Search failed; extraction was not called.
+        outputs:
+        - variable: message
+          value_selector:
+          - search_failed_message
+          - output
+          value_type: string
+        selected: false
+      position:
+        x: 300
+        y: 700
+      sourcePosition: right
+      targetPosition: left
+      width: 242
+      height: 100
+    - id: extract_failed_message
+      type: custom
+      data:
+        type: template-transform
+        title: Extraction failed; no content is available.
+        variables: []
+        template: Extraction failed; no content is available.
+        selected: false
+      position:
+        x: 1500
+        y: 500
+      sourcePosition: right
+      targetPosition: left
+      width: 242
+      height: 100
+    - id: extract_failed
+      type: custom
+      data:
+        type: end
+        title: Extraction failed; no content is available.
+        outputs:
+        - variable: message
+          value_selector:
+          - extract_failed_message
+          - output
+          value_type: string
+        selected: false
+      position:
+        x: 1500
+        y: 700
+      sourcePosition: right
+      targetPosition: left
+      width: 242
+      height: 100
+    edges:
+    - id: start-source-search
+      source: start
+      target: search
+      sourceHandle: source
+      targetHandle: target
+      type: custom
+      data: {}
+    - id: search-source-has_results
+      source: search
+      target: has_results
+      sourceHandle: source
+      targetHandle: target
+      type: custom
+      data: {}
+    - id: has_results-true-select_url
+      source: has_results
+      target: select_url
+      sourceHandle: 'true'
+      targetHandle: target
+      type: custom
+      data: {}
+    - id: select_url-source-has_url
+      source: select_url
+      target: has_url
+      sourceHandle: source
+      targetHandle: target
+      type: custom
+      data: {}
+    - id: has_url-true-extract
+      source: has_url
+      target: extract
+      sourceHandle: 'true'
+      targetHandle: target
+      type: custom
+      data: {}
+    - id: extract-source-content
+      source: extract
+      target: content
+      sourceHandle: source
+      targetHandle: target
+      type: custom
+      data: {}
+    - id: has_results-false-no_results_message
+      source: has_results
+      target: no_results_message
+      sourceHandle: 'false'
+      targetHandle: target
+      type: custom
+      data: {}
+    - id: no_results_message-source-no_results
+      source: no_results_message
+      target: no_results
+      sourceHandle: source
+      targetHandle: target
+      type: custom
+      data: {}
+    - id: has_url-false-no_url_message
+      source: has_url
+      target: no_url_message
+      sourceHandle: 'false'
+      targetHandle: target
+      type: custom
+      data: {}
+    - id: no_url_message-source-no_url
+      source: no_url_message
+      target: no_url
+      sourceHandle: source
+      targetHandle: target
+      type: custom
+      data: {}
+    - id: search-fail-branch-search_failed_message
+      source: search
+      target: search_failed_message
+      sourceHandle: fail-branch
+      targetHandle: target
+      type: custom
+      data: {}
+    - id: search_failed_message-source-search_failed
+      source: search_failed_message
+      target: search_failed
+      sourceHandle: source
+      targetHandle: target
+      type: custom
+      data: {}
+    - id: extract-fail-branch-extract_failed_message
+      source: extract
+      target: extract_failed_message
+      sourceHandle: fail-branch
+      targetHandle: target
+      type: custom
+      data: {}
+    - id: extract_failed_message-source-extract_failed
+      source: extract_failed_message
+      target: extract_failed
+      sourceHandle: source
+      targetHandle: target
+      type: custom
+      data: {}
+    viewport:
+      x: 0
+      y: 0
+      zoom: 0.5
+  features: {}
+  environment_variables: []
+  conversation_variables: []

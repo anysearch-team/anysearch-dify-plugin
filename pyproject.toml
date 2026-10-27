@@ -1,0 +1,18 @@
+[project]
+name = "anysearch-dify-plugin"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = ["dify-plugin==0.10.2", "httpx==0.28.1"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+cache_dir = ".codex/pytest-cache"
+addopts = ["--ignore=.codegraph"]
+
+[tool.mypy]
+python_version = "3.12"
+files = ["anysearch", "provider", "tools", "main.py"]
+check_untyped_defs = true
+ignore_missing_imports = true
+follow_imports = "silent"
+cache_dir = ".codex/mypy-cache"

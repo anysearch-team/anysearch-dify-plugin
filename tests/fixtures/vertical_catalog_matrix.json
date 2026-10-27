@@ -1,0 +1,892 @@
+[
+  {
+    "domain": "academic",
+    "tag": "academic.biomedical",
+    "parameters": [
+      {
+        "name": "date_type",
+        "required": false
+      },
+      {
+        "name": "field",
+        "required": false
+      },
+      {
+        "name": "has_pdf",
+        "required": false
+      },
+      {
+        "name": "open_access",
+        "required": false
+      },
+      {
+        "name": "sort",
+        "required": false
+      },
+      {
+        "name": "source",
+        "required": false
+      },
+      {
+        "name": "year_from",
+        "required": false
+      },
+      {
+        "name": "year_to",
+        "required": false
+      }
+    ]
+  },
+  {
+    "domain": "academic",
+    "tag": "academic.citation",
+    "parameters": [
+      {
+        "name": "category",
+        "required": false
+      },
+      {
+        "name": "doi",
+        "required": false
+      },
+      {
+        "name": "filter",
+        "required": false
+      },
+      {
+        "name": "id",
+        "required": true
+      },
+      {
+        "name": "id_type",
+        "required": false
+      },
+      {
+        "name": "min_citations",
+        "required": false
+      },
+      {
+        "name": "op",
+        "required": false
+      },
+      {
+        "name": "open_access",
+        "required": false
+      },
+      {
+        "name": "sort",
+        "required": false
+      },
+      {
+        "name": "type",
+        "required": false
+      },
+      {
+        "name": "venue",
+        "required": false
+      },
+      {
+        "name": "year_from",
+        "required": false
+      },
+      {
+        "name": "year_to",
+        "required": false
+      }
+    ]
+  },
+  {
+    "domain": "academic",
+    "tag": "academic.dataset",
+    "parameters": [
+      {
+        "name": "client_id",
+        "required": false
+      },
+      {
+        "name": "resource_type",
+        "required": false
+      },
+      {
+        "name": "year_from",
+        "required": false
+      },
+      {
+        "name": "year_to",
+        "required": false
+      }
+    ]
+  },
+  {
+    "domain": "academic",
+    "tag": "academic.preprint",
+    "parameters": [
+      {
+        "name": "doi",
+        "required": false
+      },
+      {
+        "name": "field",
+        "required": false
+      },
+      {
+        "name": "language",
+        "required": false
+      },
+      {
+        "name": "open_access",
+        "required": false
+      },
+      {
+        "name": "order",
+        "required": false
+      },
+      {
+        "name": "sort",
+        "required": false
+      },
+      {
+        "name": "type",
+        "required": false
+      },
+      {
+        "name": "year_from",
+        "required": false
+      },
+      {
+        "name": "year_to",
+        "required": false
+      }
+    ]
+  },
+  {
+    "domain": "academic",
+    "tag": "academic.search",
+    "parameters": [
+      {
+        "name": "category",
+        "required": false
+      },
+      {
+        "name": "doi",
+        "required": false
+      },
+      {
+        "name": "min_citations",
+        "required": false
+      },
+      {
+        "name": "open_access",
+        "required": false
+      },
+      {
+        "name": "sort",
+        "required": false
+      },
+      {
+        "name": "type",
+        "required": false
+      },
+      {
+        "name": "venue",
+        "required": false
+      },
+      {
+        "name": "year_from",
+        "required": false
+      },
+      {
+        "name": "year_to",
+        "required": false
+      }
+    ]
+  },
+  {
+    "domain": "agriculture",
+    "tag": "agriculture.fao",
+    "parameters": [
+      {
+        "name": "date_start",
+        "required": false
+      },
+      {
+        "name": "domain",
+        "required": false
+      },
+      {
+        "name": "keyword",
+        "required": false
+      },
+      {
+        "name": "location",
+        "required": false
+      },
+      {
+        "name": "type",
+        "required": false
+      }
+    ]
+  },
+  {
+    "domain": "business",
+    "tag": "business.company",
+    "parameters": [
+      {
+        "name": "keyword",
+        "required": false
+      },
+      {
+        "name": "type",
+        "required": false
+      }
+    ]
+  },
+  {
+    "domain": "business",
+    "tag": "business.jobs",
+    "parameters": [
+      {
+        "name": "keyword",
+        "required": false
+      },
+      {
+        "name": "location",
+        "required": false
+      },
+      {
+        "name": "salary_min",
+        "required": false
+      },
+      {
+        "name": "type",
+        "required": false
+      }
+    ]
+  },
+  {
+    "domain": "business",
+    "tag": "business.people",
+    "parameters": [
+      {
+        "name": "keyword",
+        "required": false
+      },
+      {
+        "name": "location",
+        "required": false
+      },
+      {
+        "name": "seniority",
+        "required": false
+      },
+      {
+        "name": "title",
+        "required": false
+      },
+      {
+        "name": "type",
+        "required": false
+      }
+    ]
+  },
+  {
+    "domain": "business",
+    "tag": "business.trade",
+    "parameters": [
+      {
+        "name": "date_start",
+        "required": false
+      },
+      {
+        "name": "flow",
+        "required": false
+      },
+      {
+        "name": "hs_code",
+        "required": false
+      },
+      {
+        "name": "location",
+        "required": false
+      },
+      {
+        "name": "type",
+        "required": false
+      }
+    ]
+  },
+  {
+    "domain": "code",
+    "tag": "code.doc",
+    "parameters": [
+      {
+        "name": "library",
+        "required": true
+      }
+    ]
+  },
+  {
+    "domain": "code",
+    "tag": "code.snippet",
+    "parameters": [
+      {
+        "name": "lang",
+        "required": false
+      },
+      {
+        "name": "path",
+        "required": false
+      },
+      {
+        "name": "repo",
+        "required": false
+      }
+    ]
+  },
+  {
+    "domain": "energy",
+    "tag": "energy.electricity",
+    "parameters": [
+      {
+        "name": "date_end",
+        "required": false
+      },
+      {
+        "name": "date_start",
+        "required": false
+      },
+      {
+        "name": "location",
+        "required": false
+      },
+      {
+        "name": "metric",
+        "required": false
+      },
+      {
+        "name": "type",
+        "required": false
+      }
+    ]
+  },
+  {
+    "domain": "energy",
+    "tag": "energy.production",
+    "parameters": [
+      {
+        "name": "date_start",
+        "required": false
+      },
+      {
+        "name": "frequency",
+        "required": false
+      },
+      {
+        "name": "keyword",
+        "required": false
+      },
+      {
+        "name": "location",
+        "required": false
+      },
+      {
+        "name": "type",
+        "required": false
+      }
+    ]
+  },
+  {
+    "domain": "environment",
+    "tag": "environment.aqi",
+    "parameters": [
+      {
+        "name": "location",
+        "required": false
+      },
+      {
+        "name": "type",
+        "required": false
+      }
+    ]
+  },
+  {
+    "domain": "film",
+    "tag": "film.torrent",
+    "parameters": []
+  },
+  {
+    "domain": "finance",
+    "tag": "finance.calendar",
+    "parameters": [
+      {
+        "name": "period",
+        "required": false
+      },
+      {
+        "name": "symbol",
+        "required": false
+      },
+      {
+        "name": "type",
+        "required": true
+      }
+    ]
+  },
+  {
+    "domain": "finance",
+    "tag": "finance.fundamental",
+    "parameters": [
+      {
+        "name": "cn_code",
+        "required": true
+      },
+      {
+        "name": "period",
+        "required": false
+      },
+      {
+        "name": "symbol",
+        "required": true
+      },
+      {
+        "name": "type",
+        "required": true
+      }
+    ]
+  },
+  {
+    "domain": "finance",
+    "tag": "finance.macro",
+    "parameters": [
+      {
+        "name": "period",
+        "required": false
+      },
+      {
+        "name": "type",
+        "required": true
+      }
+    ]
+  },
+  {
+    "domain": "finance",
+    "tag": "finance.news",
+    "parameters": [
+      {
+        "name": "cn_code",
+        "required": false
+      },
+      {
+        "name": "news_src",
+        "required": false
+      },
+      {
+        "name": "period",
+        "required": false
+      },
+      {
+        "name": "symbol",
+        "required": false
+      },
+      {
+        "name": "type",
+        "required": true
+      }
+    ]
+  },
+  {
+    "domain": "finance",
+    "tag": "finance.quote",
+    "parameters": [
+      {
+        "name": "cn_code",
+        "required": false
+      },
+      {
+        "name": "period",
+        "required": false
+      },
+      {
+        "name": "symbol",
+        "required": false
+      },
+      {
+        "name": "type",
+        "required": true
+      }
+    ]
+  },
+  {
+    "domain": "finance",
+    "tag": "finance.screen",
+    "parameters": [
+      {
+        "name": "country",
+        "required": false
+      },
+      {
+        "name": "sector",
+        "required": false
+      },
+      {
+        "name": "type",
+        "required": true
+      }
+    ]
+  },
+  {
+    "domain": "gaming",
+    "tag": "gaming.esports",
+    "parameters": [
+      {
+        "name": "champion",
+        "required": false
+      },
+      {
+        "name": "division",
+        "required": false
+      },
+      {
+        "name": "game_name",
+        "required": false
+      },
+      {
+        "name": "match_id",
+        "required": false
+      },
+      {
+        "name": "queue",
+        "required": false
+      },
+      {
+        "name": "region",
+        "required": false
+      },
+      {
+        "name": "tier",
+        "required": false
+      },
+      {
+        "name": "type",
+        "required": true
+      }
+    ]
+  },
+  {
+    "domain": "gaming",
+    "tag": "gaming.store",
+    "parameters": []
+  },
+  {
+    "domain": "general",
+    "tag": "general.general",
+    "parameters": []
+  },
+  {
+    "domain": "health",
+    "tag": "health.drug",
+    "parameters": [
+      {
+        "name": "type",
+        "required": true
+      }
+    ]
+  },
+  {
+    "domain": "health",
+    "tag": "health.stats",
+    "parameters": []
+  },
+  {
+    "domain": "health",
+    "tag": "health.trial",
+    "parameters": []
+  },
+  {
+    "domain": "ip",
+    "tag": "ip.global",
+    "parameters": [
+      {
+        "name": "applicant",
+        "required": false
+      },
+      {
+        "name": "date_start",
+        "required": false
+      },
+      {
+        "name": "ipc",
+        "required": false
+      },
+      {
+        "name": "keyword",
+        "required": false
+      },
+      {
+        "name": "type",
+        "required": false
+      }
+    ]
+  },
+  {
+    "domain": "legal",
+    "tag": "legal.case",
+    "parameters": [
+      {
+        "name": "case_id",
+        "required": false
+      },
+      {
+        "name": "database_id",
+        "required": false
+      },
+      {
+        "name": "doc_type",
+        "required": false
+      },
+      {
+        "name": "jurisdiction",
+        "required": false
+      },
+      {
+        "name": "language",
+        "required": false
+      },
+      {
+        "name": "respondent",
+        "required": false
+      },
+      {
+        "name": "service",
+        "required": false
+      }
+    ]
+  },
+  {
+    "domain": "legal",
+    "tag": "legal.legislation",
+    "parameters": [
+      {
+        "name": "congress",
+        "required": false
+      },
+      {
+        "name": "jurisdiction",
+        "required": false
+      }
+    ]
+  },
+  {
+    "domain": "legal",
+    "tag": "legal.statute",
+    "parameters": [
+      {
+        "name": "agency",
+        "required": false
+      },
+      {
+        "name": "collection",
+        "required": false
+      },
+      {
+        "name": "date_from",
+        "required": false
+      },
+      {
+        "name": "date_to",
+        "required": false
+      },
+      {
+        "name": "doc_type",
+        "required": false
+      },
+      {
+        "name": "historical",
+        "required": false
+      },
+      {
+        "name": "jurisdiction",
+        "required": false
+      },
+      {
+        "name": "language",
+        "required": false
+      },
+      {
+        "name": "title",
+        "required": false
+      }
+    ]
+  },
+  {
+    "domain": "resource",
+    "tag": "resource.image",
+    "parameters": []
+  },
+  {
+    "domain": "security",
+    "tag": "security.intel",
+    "parameters": [
+      {
+        "name": "ioc",
+        "required": true
+      }
+    ]
+  },
+  {
+    "domain": "security",
+    "tag": "security.noise",
+    "parameters": [
+      {
+        "name": "ip",
+        "required": true
+      }
+    ]
+  },
+  {
+    "domain": "security",
+    "tag": "security.scan",
+    "parameters": [
+      {
+        "name": "ioc",
+        "required": true
+      }
+    ]
+  },
+  {
+    "domain": "security",
+    "tag": "security.vuln",
+    "parameters": [
+      {
+        "name": "type",
+        "required": true
+      },
+      {
+        "name": "value",
+        "required": true
+      }
+    ]
+  },
+  {
+    "domain": "social_media",
+    "tag": "social_media.social_media",
+    "parameters": [
+      {
+        "name": "keyword",
+        "required": false
+      },
+      {
+        "name": "region",
+        "required": false
+      },
+      {
+        "name": "type",
+        "required": false
+      }
+    ]
+  },
+  {
+    "domain": "travel",
+    "tag": "travel.flight",
+    "parameters": [
+      {
+        "name": "adults",
+        "required": false
+      },
+      {
+        "name": "arrival",
+        "required": true
+      },
+      {
+        "name": "cabin_class",
+        "required": false
+      },
+      {
+        "name": "children",
+        "required": false
+      },
+      {
+        "name": "currency",
+        "required": false
+      },
+      {
+        "name": "date",
+        "required": true
+      },
+      {
+        "name": "departure",
+        "required": true
+      },
+      {
+        "name": "destination",
+        "required": false
+      },
+      {
+        "name": "infants",
+        "required": false
+      },
+      {
+        "name": "origin",
+        "required": false
+      },
+      {
+        "name": "return_date",
+        "required": false
+      },
+      {
+        "name": "type",
+        "required": false
+      }
+    ]
+  },
+  {
+    "domain": "travel",
+    "tag": "travel.flight_status",
+    "parameters": [
+      {
+        "name": "adults",
+        "required": false
+      },
+      {
+        "name": "arrival",
+        "required": true
+      },
+      {
+        "name": "cabin_class",
+        "required": false
+      },
+      {
+        "name": "children",
+        "required": false
+      },
+      {
+        "name": "currency",
+        "required": false
+      },
+      {
+        "name": "date",
+        "required": true
+      },
+      {
+        "name": "departure",
+        "required": true
+      },
+      {
+        "name": "flight_number",
+        "required": false
+      },
+      {
+        "name": "infants",
+        "required": false
+      },
+      {
+        "name": "return_date",
+        "required": false
+      },
+      {
+        "name": "type",
+        "required": false
+      }
+    ]
+  }
+]

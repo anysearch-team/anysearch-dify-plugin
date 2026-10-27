@@ -1,0 +1,40 @@
+version: 0.1.0
+type: plugin
+author: anysearch-team
+name: anysearch
+repo: https://github.com/anysearch-team/anysearch-dify-plugin
+contact: 18848958186@163.com
+label:
+  en_US: AnySearch
+  ja_JP: AnySearch
+  zh_Hans: AnySearch
+  pt_BR: AnySearch
+description:
+  en_US: General search through the AnySearch REST API
+  ja_JP: General search through the AnySearch REST API
+  zh_Hans: General search through the AnySearch REST API
+  pt_BR: General search through the AnySearch REST API
+icon: icon.png
+icon_dark: icon.png
+resource:
+  memory: 268435456
+  permission: {}
+plugins:
+  tools:
+    - provider/anysearch.yaml
+meta:
+  version: 0.1.0
+  arch:
+    - amd64
+    - arm64
+  runner:
+    language: python
+    version: "3.12"
+    entrypoint: main
+  minimum_dify_version: 1.17.1
+created_at: 2026-09-21T19:15:06.6989919+08:00
+privacy: PRIVACY.md
+verified: false
+network:
+  domains:
+    - api.anysearch.com

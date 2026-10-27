@@ -1,0 +1,149 @@
+[
+  {
+    "domain": "academic",
+    "tag": "academic.preprint",
+    "description": "Preprint paper search across CS, physics, math, biology, economics for cutting-edge research",
+    "parameters": [
+      {
+        "name": "sort",
+        "description": "Sort field. Values: `relevance` (relevance, default), `date_submitted` (submission date), `date_updated` (update date).",
+        "required": false,
+        "constraints": {}
+      },
+      {
+        "name": "order",
+        "description": "Sort direction. Values: `asc` (ascending), `desc` (descending, default). Only effective when `sort` is non-empty.",
+        "required": false,
+        "constraints": {}
+      },
+      {
+        "name": "field",
+        "description": "Query field restriction. Values: `ti` (title), `au` (author), `abs` (abstract), `co` (comments), `jr` (journal reference), `cat`/`category` (category), `all` (all fields, default).",
+        "required": false,
+        "constraints": {}
+      },
+      {
+        "name": "year_from",
+        "description": "Publication year lower bound (inclusive), e.g., `2020`.",
+        "required": false,
+        "constraints": {}
+      },
+      {
+        "name": "year_to",
+        "description": "Publication year upper bound (inclusive), e.g., `2024`.",
+        "required": false,
+        "constraints": {}
+      },
+      {
+        "name": "language",
+        "description": "Document language ISO code, e.g., `en` (English), `zh` (Chinese), `de` (German).",
+        "required": false,
+        "constraints": {}
+      },
+      {
+        "name": "doi",
+        "description": "DOI direct lookup. Skips keyword search and returns the single publication matching the DOI.\nFormat: standard DOI, e.g., 10.1145/3292500.3330701\nWhen doi is provided, query may be empty and other filter parameters are ignored.",
+        "required": false,
+        "constraints": {}
+      },
+      {
+        "name": "open_access",
+        "description": "Whether to return only open access publications.\nValid values: true / false",
+        "required": false,
+        "constraints": {}
+      },
+      {
+        "name": "type",
+        "description": "1. Document type filter. Valid values: `article`, `book`, `book-chapter`, `dataset`, `dissertation`, `preprint`, `report`, `review`, `other`. 2. Publication type, comma-separated multi-value (no spaces). Valid values (13): `JournalArticle`, `Conference`, `Review`, `CaseReport`, `ClinicalTrial`, `Dataset`, `Editorial`, `LettersAndComments`, `MetaAnalysis`, `News`, `Study`, `Book`, `BookSection`.",
+        "required": false,
+        "constraints": {}
+      }
+    ]
+  },
+  {
+    "domain": "academic",
+    "tag": "academic.search",
+    "description": "Cross-discipline paper search by keyword, title, author, institution with metadata and open access links",
+    "parameters": [
+      {
+        "name": "category",
+        "description": "Subject category, comma-separated multi-value. Valid values (22): `Computer Science`, `Medicine`, `Biology`, `Chemistry`, `Physics`, `Mathematics`, `Materials Science`, `Engineering`, `Environmental Science`, `Geology`, `Geography`, `Sociology`, `Psychology`, `Economics`, `Business`, `Political Science`, `Linguistics`, `Philosophy`, `History`, `Art`, `Education`, `Law`.",
+        "required": false,
+        "constraints": {}
+      },
+      {
+        "name": "doi",
+        "description": "DOI direct lookup. Skips keyword search and returns the single publication matching the DOI.\nFormat: standard DOI, e.g., 10.1145/3292500.3330701\nWhen doi is provided, query may be empty and other filter parameters are ignored.",
+        "required": false,
+        "constraints": {}
+      },
+      {
+        "name": "min_citations",
+        "description": "Minimum citation count, non-negative integer string, e.g., `100`. Used for academic quality filtering. Maps to `minCitationCount` parameter.",
+        "required": false,
+        "constraints": {}
+      },
+      {
+        "name": "open_access",
+        "description": "Whether to return only open access publications.\nValid values: true / false",
+        "required": false,
+        "constraints": {}
+      },
+      {
+        "name": "sort",
+        "description": "Sort field. Valid values: `cited_by_count`, `publication_date`, `publication_year`, `relevance_score`, `display_name`. Append `:asc` or `:desc` to specify direction, e.g., `cited_by_count:desc`. Default: sort by relevance.",
+        "required": false,
+        "constraints": {}
+      },
+      {
+        "name": "type",
+        "description": "1. Document type filter. Valid values: `article`, `book`, `book-chapter`, `dataset`, `dissertation`, `preprint`, `report`, `review`, `other`. 2. Publication type, comma-separated multi-value (no spaces). Valid values (13): `JournalArticle`, `Conference`, `Review`, `CaseReport`, `ClinicalTrial`, `Dataset`, `Editorial`, `LettersAndComments`, `MetaAnalysis`, `News`, `Study`, `Book`, `BookSection`.",
+        "required": false,
+        "constraints": {}
+      },
+      {
+        "name": "venue",
+        "description": "Journal/conference name, comma-separated multi-value. Must match S2 database exactly. Common values: `NeurIPS`, `ICML`, `ICLR`, `CVPR`, `Nature`, `Science`, `Cell`, `Lancet`. Maps to `venue` parameter.",
+        "required": false,
+        "constraints": {}
+      },
+      {
+        "name": "year_from",
+        "description": "Publication year start (inclusive), four digits.\nExample: 2020",
+        "required": false,
+        "constraints": {}
+      },
+      {
+        "name": "year_to",
+        "description": "Publication year end (inclusive), four digits.\nExample: 2024\nFor single-year queries, set year_from and year_to to the same value.",
+        "required": false,
+        "constraints": {}
+      }
+    ]
+  },
+  {
+    "domain": "social_media",
+    "tag": "social_media.social_media",
+    "description": "Social media information search and retrieval",
+    "parameters": [
+      {
+        "name": "type",
+        "description": "type：weibo / weibo_hot / zhihu / zhihu_hot / x_top / x_latest / x_media / x_people / x_lists / reddit_post / reddit_community / reddit_comment / reddit_media / reddit_people / linkedin_people / linkedin_jobs / linkedin_company / linkedin_posts / wechatmp（Target platforms and search patterns）",
+        "required": false,
+        "constraints": {}
+      },
+      {
+        "name": "keyword",
+        "description": "AI large models / Python developer / Musk (Search keywords take precedence over query fields)",
+        "required": false,
+        "constraints": {}
+      },
+      {
+        "name": "region",
+        "description": "Beijing / Shanghai / Guangdong (Region filtering only works when type=weibo_hot)",
+        "required": false,
+        "constraints": {}
+      }
+    ]
+  }
+]

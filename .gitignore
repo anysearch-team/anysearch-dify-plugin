@@ -1,0 +1,22 @@
+# 忽略本地开发产物。
+/.codex/
+/CONTEXT.md
+/.omo/
+/.codegraph/
+.venv/
+.env
+.env.*
+!.env.example
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.difypkg
+*.log
+.coverage*
+htmlcov/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
